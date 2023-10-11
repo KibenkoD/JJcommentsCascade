@@ -50,7 +50,6 @@ main.directive('commentsLiveJ', ["$q","$rootScope","userService", function ($q, 
                             item.text = text;
                         }
                     }
-
                 })
                 scope.shownModal = {};
             }
