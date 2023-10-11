@@ -1,8 +1,8 @@
 <div comments-live-j>
-    <div class="comment-wrap" ng-style="{'margin-left': +user.threadId * 25+'px'}" ng-repeat="user in liveJUsers track by $index">
-        <div class="comment-head" >
+    <div class="comment-wrap" ng-class="{'user-background': $root.currentUser.userId == user.userId}" ng-style="{'margin-left': +user.threadId * 25+'px'}" ng-repeat="user in liveJUsers track by $index">
+        <div class="comment-head" ng-class="{'user-background': $root.currentUser.userId == user.userId}">
             <div class="comment-head-img">
-                <img ng-src="{{user.avatarImage}}" alt="">
+                <img ng-src="{{user.avatarImage}}" alt="img">
             </div>
             <div class="comment-middle-user-nickname">
                 <span><img ng-src="https://l-stat.livejournal.net/img/userinfo_v8.svg?v=17080&v=699" alt="{{user.userNickName}}" > {{user.userNickName}}</span>
@@ -83,5 +83,9 @@
         flex-wrap: wrap;
         margin-bottom: 0;
         list-style-type: none;
+    }
+
+    .user-background {
+        background-color:#89b6bb;
     }
 </style>

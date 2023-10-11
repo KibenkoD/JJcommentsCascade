@@ -38,7 +38,7 @@ main.run(['$rootScope','$transitions', function ($rootScope, $transitions) {
         }
         $rootScope.currentUser = {
             userId: 999999,
-            userNickName:'myNick',
+            userNickName:'myNick (you)',
             avatarImage: 'https://l-userpic.livejournal.com/129157889/77488374',
         }
 
