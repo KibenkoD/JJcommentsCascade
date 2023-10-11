@@ -13,8 +13,8 @@ var UserCommentsLengthR = function ( name ) {
 main.directive('commentsCount', ["$rootScope", function ($rootScope) {
     return {
         restrict: 'AE',
-        link: function(scope, element, attrs) {
-            scope.$watch('userCommentsLength', function (event, args){
+        link: function(scope) {
+            scope.$watch('userCommentsLength', function (){
                 UserCommentsLengthR($rootScope.userCommentsLength)
             })
         }
