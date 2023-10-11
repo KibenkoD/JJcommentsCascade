@@ -4,7 +4,7 @@ var UserCommentsLengthR = function ( name ) {
     );
     const  element = React.createElement(
         'div',
-        { className: 'react-count' },
+        { className: 'react-count-int' },
         name
     );
     root.render(element);
@@ -12,7 +12,6 @@ var UserCommentsLengthR = function ( name ) {
 
 main.directive('commentsCount', ["$rootScope", function ($rootScope) {
     return {
-        restrict: 'AE',
         link: function(scope) {
             scope.$watch('userCommentsLength', function (){
                 UserCommentsLengthR($rootScope.userCommentsLength)

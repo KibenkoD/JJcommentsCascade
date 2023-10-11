@@ -8,10 +8,14 @@ hr {
     margin: 3.5em 20px;
     overflow: hidden;
 }
-.react-count {
-    background-color: grey;
+.react-count-block {
+    display: flex;
+    font-size: 25px;
+}
+.react-count-int {
     margin-left: 1rem;
     font-size: 25px;
+    color:red;
 }
 h2 {
     margin-left: 1rem;

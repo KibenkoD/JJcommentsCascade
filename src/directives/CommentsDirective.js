@@ -6,13 +6,14 @@ main.directive('commentsLiveJ', ["$q","$rootScope","userService", function ($q, 
             $rootScope.$on('liveJUsers:mainGet', function (event, args){
                 scope.liveJUsers = args.users;
                 userService.initCurrentUser($rootScope.currentUser)
-            })
+            });
 
             scope.$watchCollection('liveJUsers', function (){
                 if(scope.liveJUsers && scope.liveJUsers.length){
                     $rootScope.userCommentsLength = scope.liveJUsers.length;
                 }
-            })
+            });
+
             scope.showForm = function (form, commentId){
                 scope.shownModal = {};
                 scope.shownModal[form] = form;

@@ -7,8 +7,6 @@ const rename = require('gulp-rename');
 
 const concat = require('gulp-concat');
 
-
-
 const webserver = require('gulp-webserver');
 
 gulp.task('build:js', function(done) {
@@ -17,6 +15,9 @@ gulp.task('build:js', function(done) {
         .pipe(babel({
             presets: ['@babel/env']
         }))
+        .pipe(gulp.dest('build/js'));
+    gulp.src(['reactApp/indexReact.js'])
+        .pipe(concat('bundle.js'))
         .pipe(gulp.dest('build/js'));
 
     gulp.src(['node_modules/react/umd/*.js'])
@@ -76,7 +77,7 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('watch:js', function() {
-    gulp.watch(['./src/**'], gulp.series(['build:js']));
+    gulp.watch(['./src/**', './reactApp/**'], gulp.series(['build:js']));
 });
 
 gulp.task('watch:files', function() {
