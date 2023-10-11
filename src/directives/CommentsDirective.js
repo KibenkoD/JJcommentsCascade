@@ -3,12 +3,12 @@ main.directive('commentsLiveJ', ["$q","$rootScope","userService", function ($q, 
         link: function (scope, element, attr) {
             scope.shownModal = {};
             scope.editCommentModel = {}
-            $rootScope.$on('liveJUsers:mainGet', function (event, args){
+            const liveJUsersWatch = $rootScope.$on('liveJUsers:mainGet', function (event, args){
                 scope.liveJUsers = args.users;
                 userService.initCurrentUser($rootScope.currentUser)
             });
 
-            scope.$watchCollection('liveJUsers', function (){
+            const commentsLengthWatch = scope.$watchCollection('liveJUsers', function (){
                 if(scope.liveJUsers && scope.liveJUsers.length){
                     $rootScope.userCommentsLength = scope.liveJUsers.length;
                 }
@@ -22,18 +22,18 @@ main.directive('commentsLiveJ', ["$q","$rootScope","userService", function ($q, 
 
             scope.addComment = function (user, text){
 
-                let lastItemIndex;
-                let currentComment = {}
+                let lastItemIndex = 0;
+                let currentComment = {};
                 scope.liveJUsers.forEach(function(item, index){
                     if(item.threadId == user.threadId){
-                        lastItemIndex = index
+                        lastItemIndex = index;
                     }
-                })
+                });
 
                 userService.userCommentsData.text = text;
                 userService.userCommentsData.threadId = user.threadId;
-                userService.userCommentsData.commentId = user.commentId + 1
-                Object.assign(currentComment, userService.userCommentsData)
+                userService.userCommentsData.commentId = user.commentId + 1;
+                Object.assign(currentComment, userService.userCommentsData);
 
                 scope.liveJUsers.splice(lastItemIndex +1, 0, currentComment);
                 scope.shownModal = {};
@@ -51,12 +51,12 @@ main.directive('commentsLiveJ', ["$q","$rootScope","userService", function ($q, 
                             item.text = text;
                         }
                     }
-                })
+                });
                 scope.shownModal = {};
             }
 
             scope.deleteComment = function (user){
-                let lastItemIndex;
+                let lastItemIndex = 0;
                 scope.liveJUsers.forEach(function(item, index){
                     if(item.threadId == user.threadId){
                         if(user.commentId == item.commentId){
@@ -76,7 +76,8 @@ main.directive('commentsLiveJ', ["$q","$rootScope","userService", function ($q, 
             }
 
             scope.$on('$destroy', function () {
-
+                liveJUsersWatch();
+                commentsLengthWatch();
             });
         }
     }

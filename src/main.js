@@ -55,10 +55,8 @@ main.factory('broadcastService',['$rootScope', function($rootScope) { // Create 
 }]);
 
 main.config(['$stateProvider', '$urlRouterProvider','$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
-    $locationProvider.html5Mode(true); // Если production, включаем html5mode
+    $locationProvider.html5Mode(true); // Если production, включаем html5mode, убираем #
     $stateProvider
-
-
         .state('comments_section', {
             url: '/liveJournal',
             templateUrl: (TEMPLATES_DIR || '/templates') + '/commentsSection.html',

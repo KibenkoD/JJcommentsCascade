@@ -18,14 +18,23 @@ gulp.task('build:js', function(done) {
         .pipe(gulp.dest('build/js'));
     gulp.src(['reactApp/indexReact.js'])
         .pipe(concat('bundle.js'))
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest('build/js'))
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
 
     gulp.src(['node_modules/react/umd/*.js'])
         .pipe(concat('react.js'))
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest('build/js'))
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
     gulp.src(['node_modules/react-dom/umd/react-dom.production.min.js'])
         .pipe(concat('react-dom.js'))
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest('build/js'))
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
 
     if (!fs.existsSync('./build/js/app.js')) { // При сборке собираем app.js один раз (only gulp.watch)
         gulp.src(['node_modules/angular/angular.js', 'node_modules/angular-ui-router/release/angular-ui-router.js'])
