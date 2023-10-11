@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "type": "module",
   "scripts": {
-    "compile": "gulp build:files && gulp build:js",
+    "compile": "gulp build:files && gulp build:js && build:styles",
     "start": "gulp build:files && gulp build:js && gulp build:styles && gulp server"
   },
   "repository": {
