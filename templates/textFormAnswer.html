@@ -1,0 +1,12 @@
+<form name="comment_" class="comment-form">
+    <div class="comment-form__wraper">
+        <div class="comment-wrapper">
+            <textarea class="input_text" required ng-minlength="1" ng-maxlength="5000" type="text" ng-model="comment_.text" placeholder="напишите отзыв"></textarea>
+        </div>
+        <button class="all-f-btn"
+                ng-click="addComment(user, comment_.text)"
+                ng-disabled="!comment_.$dirty || !comment_.text.length"
+                >Оставить отзыв
+        </button>
+    </div>
+</form>

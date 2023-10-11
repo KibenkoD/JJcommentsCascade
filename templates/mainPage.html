@@ -1,0 +1,39 @@
+
+<section>
+    <div class="main-page__title">Медаль "78 лет Победы над Японией"</div>
+    <div class="main-page__avatar-block">
+        <img src="https://l-userpic.livejournal.com/90984218/19281164" alt="colonelcassad">
+        <span class="d-block">
+            <img style="width: 16px" src="https://l-files.livejournal.net/userhead/1203?v=1368446261" alt="">
+            some nickname
+            <p>30 августа, 16:36</p>
+        </span>
+    </div>
+    <div>
+        <img src="https://ic.pics.livejournal.com/colonelcassad/19281164/3992357/3992357_900.jpg" alt="image">
+    </div>
+
+</section>
+<div>
+    <h3>Count user comments from React</h3><span id="reactEnter" comments-count="" ></span>
+</div>
+
+<div class="hr"><hr></div>
+
+<div ng-loading="commentsSectionId"></div>
+<div ng-if="noCommentsAtAll">Будь первым! Добавь свой комментарий <a href="javascript:void(0);">оставить отзыв</a></div>
+<section id="commentsSectionId" style="display: block">
+   <div ng-include="'/commentsSection.html' | baseUrl"></div>
+</section>
+<style>
+    .main-page__title{
+        margin-left: 1rem;
+    }
+    .main-page__avatar-block {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: white;
+        padding: 10px;
+    }
+</style>

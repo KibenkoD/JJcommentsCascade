@@ -1,0 +1,12 @@
+<form name="editCommentModelMain" class="comment-form">
+  <div class="comment-form__wraper">
+    <div class="comment-wrapper">
+      <textarea ng-value="editCommentModel.text" class="input_text" required ng-minlength="1" ng-maxlength="5000" type="text" ng-model="editCommentModel.text" placeholder="введите текст"></textarea>
+    </div>
+    <button class="all-f-btn"
+            ng-click="saveComment(user, editCommentModel.text)"
+            ng-disabled="!editCommentModelMain.$dirty || !editCommentModel.text.length"
+    >сохранить
+    </button>
+  </div>
+</form>

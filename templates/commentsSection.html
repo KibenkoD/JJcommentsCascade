@@ -1,0 +1,87 @@
+<div comments-live-j>
+    <div class="comment-wrap" ng-style="{'margin-left': +user.threadId * 25+'px'}" ng-repeat="user in liveJUsers track by $index">
+        <div class="comment-head" >
+            <div class="comment-head-img">
+                <img ng-src="{{user.avatarImage}}" alt="">
+            </div>
+            <div class="comment-middle-user-nickname">
+                <span><img ng-src="https://l-stat.livejournal.net/img/userinfo_v8.svg?v=17080&v=699" alt="{{user.userNickName}}" > {{user.userNickName}}</span>
+                <p class="comment-bottom-time" title="{{user.timeCreated}}" ng-bind="user.timeCreated"></p>
+            </div>
+
+        </div>
+        <div class="comment-middle">
+            <span class="comment-middle-text" ng-bind="user.text"></span>
+            <span ng-if=""></span>
+        </div>
+        <div class="comment-bottom">
+            <div class="comment-comment-bottom-menu" ng-if="user.userId !== $root.currentUser.userId">
+                <ul class="comment-menu__list">
+                    <li class="comment-menu__item" ng-click="showForm('answer', user.commentId)">Ответить</li>
+                    <li class="comment-menu__item" ng-show="$index > 0">Уровень выше</li>
+                    <li class="comment-menu__item" ui-sref="comments_section.thread">Ветвь дискуссии </li>
+                    <li class="comment-menu__item">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svgicon reaction reaction--heart" width="16" height="16">
+                                <use xlink:href="#reaction--heart"></use>
+                            </svg>
+                            <span>Нравится</span>
+                        </div>
+                    </li>
+                    <li class="comment-menu__item">Пожаловаться</li>
+                    <li class="comment-menu__item">Пожаловаться</li>
+                </ul>
+            </div>
+            <div class="comment-comment-bottom-menu" ng-if="user.userId == $root.currentUser.userId">
+                <ul class="comment-menu__list">
+                    <li class="comment-menu__item" ng-click="editComment('edit', user)">редактировать</li>
+                    <li class="comment-menu__item" ng-click="deleteComment(user)">удалить</li>
+
+                </ul>
+            </div>
+        </div>
+        <div ng-if="shownModal && shownModal.answer && shownModal.commentId == user.commentId && $root.currentUser.userId !== user.userId" >
+            <div ng-include="'/textFormAnswer.html' | baseUrl"></div>
+        </div>
+        <div ng-if="shownModal && shownModal.edit && shownModal.commentId == user.commentId && $root.currentUser.userId == user.userId" >
+            <div ng-include="'/textFormEdit.html' | baseUrl"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .comment-wrap {
+        margin-top: 5px;
+    }
+    .comment-head {
+        display: flex;
+        justify-content: flex-start;
+        background-color: #D9D9D9;
+    }
+    .comment-menu__item{
+        margin-left: 0;
+        margin-right: 1em;
+        color: #E62817;
+        cursor: pointer;
+    }
+    .comment-middle-user-nickname {
+        width: 25%;
+        height: 20px;
+    }
+    .comment-middle {
+        width: 90%;
+    }
+    .comment-menu__list {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        list-style-type: none;
+    }
+</style>
